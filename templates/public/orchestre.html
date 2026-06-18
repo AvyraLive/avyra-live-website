@@ -1,0 +1,217 @@
+{% extends "public/base.html" %}
+{% block title %}Groupes & Artistes{% endblock %}
+{% block meta_desc %}AVYRA-LIVE : orchestres, groupes, musiciens, DJ et artistes performeurs pour vos événements. Programmation artistique sur mesure, du duo intimiste au grand show scénique.{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height:60vh;">
+  <div class="container">
+    <div class="hero-content">
+      <p style="font-size:0.85rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:12px;">Programmation artistique</p>
+      <h1 style="font-size:2.8rem;line-height:1.15;">Orchestres, groupes, musiciens,<br>DJ, artistes performeurs<br><span class="highlight">— nous vous proposons la formule<br>qui fera vibrer votre soirée.</span></h1>
+      <p style="max-width:620px;">Vous imaginez l'ambiance, nous trouvons les talents. AVYRA-LIVE sélectionne et produit les artistes qui donneront une âme à votre événement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Photo du groupe live -->
+<section style="padding:0;">
+  <div style="max-width:1000px;margin:0 auto;padding:40px 24px;">
+    <img src="{{ url_for('static', filename='img/groupe-live-1.jpg') }}" alt="Concert live AVYRA-LIVE — chanteuse, musiciens, écran LED, public" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+    <p style="text-align:center;color:var(--gris-600);font-size:0.9rem;margin-top:12px;">En concert — 25 ans Sylvea</p>
+  </div>
+</section>
+
+<!-- Notre approche -->
+<section class="section" style="padding:80px 0;">
+  <div class="container" style="max-width:900px;text-align:center;">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px;">Notre approche</p>
+    <h2 style="font-size:1.8rem;line-height:1.4;font-weight:400;color:var(--noir);">Chaque événement mérite <strong>sa propre identité musicale</strong>. Nous ne plaquons pas un groupe sur une soirée — nous concevons une <strong>expérience artistique sur mesure</strong>, en accord avec votre univers, votre public et vos émotions.</h2>
+  </div>
+</section>
+
+<!-- Processus en 3 étapes -->
+<section class="section section-alt" style="padding:80px 0;">
+  <div class="container">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;text-align:center;">Comment ça marche</p>
+    <h2 style="text-align:center;margin-bottom:40px;">De votre vision à la scène</h2>
+    <div class="grid-3" style="gap:40px;">
+      <div style="text-align:center;">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--or);margin-bottom:12px;">01</div>
+        <h3 style="font-size:1.1rem;margin-bottom:12px;">Votre brief créatif</h3>
+        <p style="color:var(--gris-600);line-height:1.7;">Type d'événement, nombre de convives, ambiance souhaitée, budget — nous faisons le point ensemble sur votre vision et vos attentes.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--or);margin-bottom:12px;">02</div>
+        <h3 style="font-size:1.1rem;margin-bottom:12px;">Casting &amp; proposition</h3>
+        <p style="color:var(--gris-600);line-height:1.7;">Forts de 20 ans dans le spectacle vivant, nous sélectionnons les artistes qui colleront parfaitement à l'identité de votre soirée. Écoutes, vidéos, références.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2.5rem;font-weight:700;color:var(--or);margin-bottom:12px;">03</div>
+        <h3 style="font-size:1.1rem;margin-bottom:12px;">Production clé en main</h3>
+        <p style="color:var(--gris-600);line-height:1.7;">Contrat, technique son &amp; lumière, logistique artistes — AVYRA-LIVE coordonne tout. Un seul interlocuteur, un seul devis, zéro stress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nos talents — catégories d'artistes -->
+<section class="section" style="background:var(--noir);color:var(--blanc);padding:80px 0;">
+  <div class="container">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;">Nos talents</p>
+    <h2 style="color:var(--blanc);margin-bottom:40px;">Tous les univers artistiques</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px;">
+      <div style="padding:28px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🎷</div>
+        <h3 style="color:var(--or);font-size:1.15rem;margin-bottom:10px;">Orchestres &amp; grands ensembles</h3>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Orchestres de variétés, big bands, formations avec cuivres et chœurs. Puissance scénique et répertoire fédérateur pour les grands événements.</p>
+      </div>
+      <div style="padding:28px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🎸</div>
+        <h3 style="color:var(--or);font-size:1.15rem;margin-bottom:10px;">Groupes &amp; formations</h3>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Rock, pop, soul, funk, jazz, reprises — du duo acoustique au groupe complet. Le format qui s'adapte à votre jauge et à votre ambiance.</p>
+      </div>
+      <div style="padding:28px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🎹</div>
+        <h3 style="color:var(--or);font-size:1.15rem;margin-bottom:10px;">Musiciens solistes</h3>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Pianiste, violoniste, saxophoniste, harpiste — pour les moments de grâce : cérémonies, cocktails, dîners, ambiances lounge.</p>
+      </div>
+      <div style="padding:28px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🎧</div>
+        <h3 style="color:var(--or);font-size:1.15rem;margin-bottom:10px;">DJ &amp; sets électroniques</h3>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">DJ expérimentés avec matériel professionnel. Sets sur mesure — deep house, club, années 80, éclectique — pour des soirées dansantes sans temps mort.</p>
+      </div>
+      <div style="padding:28px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;margin-bottom:12px;">✨</div>
+        <h3 style="color:var(--or);font-size:1.15rem;margin-bottom:10px;">Artistes performeurs</h3>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Danseurs, acrobates, cracheurs de feu, échassiers, performeurs visuels — des prestations spectaculaires qui captivent et surprennent vos invités.</p>
+      </div>
+      <div style="padding:28px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);">
+        <div style="font-size:1.8rem;margin-bottom:12px;">⭐</div>
+        <h3 style="color:var(--or);font-size:1.15rem;margin-bottom:10px;">Shows scéniques</h3>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Spectacle complet avec mise en scène, costumes, danseuses, écrans LED et jeux de lumière. Une expérience immersive qui marque les esprits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pour quels événements -->
+<section class="section" style="padding:80px 0;">
+  <div class="container">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;text-align:center;">Nos univers</p>
+    <h2 style="text-align:center;margin-bottom:40px;">Pour chaque occasion, la formule juste</h2>
+    <div class="grid-3" style="gap:32px;">
+      <div class="card card-gold">
+        <h3>Galas &amp; soirées corporate</h3>
+        <p style="color:var(--gris-600);">Inaugurations, conventions, séminaires, soirées de remise de prix — des artistes d'exception pour une soirée à l'image de votre marque.</p>
+      </div>
+      <div class="card card-gold">
+        <h3>Fêtes &amp; bals populaires</h3>
+        <p style="color:var(--gris-600);">Fêtes votives, repas dansants, réveillons — un orchestre festif et fédérateur qui fera danser toutes les générations.</p>
+      </div>
+      <div class="card card-gold">
+        <h3>Concerts &amp; festivals</h3>
+        <p style="color:var(--gris-600);">Programmation musicale complète, plateaux artistiques cohérents, têtes d'affiche et premières parties.</p>
+      </div>
+      <div class="card card-gold">
+        <h3>Mariages &amp; réceptions</h3>
+        <p style="color:var(--gris-600);">Cérémonie, cocktail, soirée dansante — des musiciens pour chaque moment, de l'acoustique intimiste au dancefloor.</p>
+      </div>
+      <div class="card card-gold">
+        <h3>Soirées à thème</h3>
+        <p style="color:var(--gris-600);">Oktoberfest, années 80, jazz lounge, disco — des concepts originaux portés par des artistes spécialisés.</p>
+      </div>
+      <div class="card card-gold">
+        <h3>Animations &amp; événements publics</h3>
+        <p style="color:var(--gris-600);">Marchés de Noël, inaugurations, journées portes ouvertes — des formations légères pour une ambiance musicale élégante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Formats / tableau des formules -->
+<section class="section section-alt" style="padding:80px 0;">
+  <div class="container">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;text-align:center;">Nos formules</p>
+    <h2 style="text-align:center;margin-bottom:40px;">Tous les formats, toutes les ambiances</h2>
+
+    <table class="formules-table">
+      <thead>
+        <tr>
+          <th style="width:180px;">Format</th>
+          <th>Description</th>
+          <th style="width:280px;">Idéal pour</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="formule-name">🎸 Duo / Trio</span></td>
+          <td>Formations acoustiques ou amplifiées — chant, guitare, clavier. Répertoire adaptable, ambiance intimiste ou festive.</td>
+          <td>Cocktails, marchés, inaugurations, apéritifs</td>
+        </tr>
+        <tr>
+          <td><span class="formule-name">🎹 Groupe 4–5</span></td>
+          <td>Section rythmique complète avec chanteurs — le format idéal pour 50 à 300 personnes avec un son plein et professionnel.</td>
+          <td>Repas dansants, soirées associatives</td>
+        </tr>
+        <tr>
+          <td><span class="formule-name">🎷 Grand orchestre 6–10+</span></td>
+          <td>Orchestre complet avec cuivres, chœurs et section rythmique. Puissance sonore et présence scénique maximale.</td>
+          <td>Fêtes votives, bals, festivals, réveillons</td>
+        </tr>
+        <tr>
+          <td><span class="formule-name">⭐ Show scénique</span></td>
+          <td>Spectacle total — mise en scène, costumes, danseuses, écrans LED, jeux de lumière. Un show qui marque les esprits.</td>
+          <td>Galas, grands festivals, événements de prestige</td>
+        </tr>
+        <tr>
+          <td><span class="formule-name">🎧 DJ professionnel</span></td>
+          <td>DJ expérimenté avec matériel complet. Set adapté à votre public — deep house, club, éclectique, rétro.</td>
+          <td>After, soirées privées, mariages, clubs</td>
+        </tr>
+        <tr>
+          <td><span class="formule-name">✨ Performeurs</span></td>
+          <td>Danseurs, acrobates, cracheurs de feu, échassiers — des prestations visuelles spectaculaires en complément ou en vedette.</td>
+          <td>Galas, festivals, lancements, événements corporate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Pourquoi AVYRA-LIVE -->
+<section class="section" style="padding:80px 0;">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;gap:60px;">
+      <div>
+        <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;">Pourquoi nous choisir</p>
+        <h2 style="font-size:1.8rem;line-height:1.3;">Plus qu'un intermédiaire.<br>Un producteur de spectacle.</h2>
+        <p style="font-size:1.05rem;color:var(--gris-600);margin:24px 0;line-height:1.7;">AVYRA-LIVE n'est pas un annuaire d'artistes. Nous sommes producteurs de spectacle vivant — nous engageons les artistes, nous assurons la direction technique, et nous garantissons la qualité de la prestation de bout en bout.</p>
+      </div>
+      <div>
+        <div style="margin-bottom:24px;padding:20px;background:var(--gris-100);border-radius:var(--radius);">
+          <h4 style="margin-bottom:8px;">📇 20 ans de réseau artistique</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">Nous connaissons les artistes, leurs univers, leurs points forts. Nous savons qui sera parfait pour votre événement.</p>
+        </div>
+        <div style="margin-bottom:24px;padding:20px;background:var(--gris-100);border-radius:var(--radius);">
+          <h4 style="margin-bottom:8px;">🔊 Technique son &amp; lumière incluse</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">La prestation technique est intégrée — son, lumière, vidéo. Un seul devis, zéro coordination supplémentaire.</p>
+        </div>
+        <div style="padding:20px;background:var(--gris-100);border-radius:var(--radius);">
+          <h4 style="margin-bottom:8px;">💰 TVA réduite 5,5%</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">Les cessions de spectacle vivant bénéficient du taux réduit — un avantage fiscal concret pour votre budget.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(135deg, var(--noir), #1a1a2e);color:var(--blanc);text-align:center;padding:100px 0;">
+  <div class="container" style="max-width:700px;">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px;">Parlons de votre événement</p>
+    <h2 style="color:var(--blanc);font-size:2rem;margin-bottom:20px;">Quel artiste pour votre soirée ?</h2>
+    <p style="color:rgba(255,255,255,0.75);font-size:1.05rem;margin-bottom:36px;">Décrivez-nous votre projet — type d'événement, ambiance, nombre de convives — et nous vous proposerons les artistes les plus adaptés avec une proposition détaillée.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Recevoir une proposition artistique</a>
+  </div>
+</section>
+{% endblock %}

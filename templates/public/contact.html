@@ -1,0 +1,92 @@
+{% extends "public/base.html" %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height:40vh;">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Contactez-<span class="highlight">nous</span></h1>
+      <p>Décrivez votre projet et recevez un devis personnalisé sous 24h.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <!-- Formulaire -->
+      <div>
+        <h2 style="margin-bottom:24px;">Demande de devis</h2>
+        <form method="POST" action="{{ url_for('contact') }}">
+          <div class="form-group">
+            <label for="nom">Nom / Structure *</label>
+            <input type="text" id="nom" name="nom" class="form-control" placeholder="Ex: Comité des Fêtes de Lauzerte" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="votre@email.fr" required>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" class="form-control" placeholder="06 xx xx xx xx">
+          </div>
+          <div class="form-group">
+            <label for="type_event">Type d'événement</label>
+            <select id="type_event" name="type_event" class="form-control">
+              <option value="">— Sélectionner —</option>
+              <option value="fete_votive">Fête votive / Bal</option>
+              <option value="mariage">Mariage / Réception privée</option>
+              <option value="soiree_entreprise">Soirée d'entreprise / Gala</option>
+              <option value="festival">Festival / Concert</option>
+              <option value="seminaire">Séminaire / Convention</option>
+              <option value="marche_noel">Marché de Noël / Animation</option>
+              <option value="bavaroise">Soirée bavaroise / Fête de la bière</option>
+              <option value="technique">Prestation technique seule</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date_event">Date souhaitée</label>
+            <input type="date" id="date_event" name="date_event" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message *</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Décrivez votre projet : lieu, nombre de personnes, budget indicatif, besoins spécifiques..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Envoyer ma demande</button>
+        </form>
+      </div>
+
+      <!-- Infos de contact -->
+      <div style="padding-left:40px;">
+        <h2 style="margin-bottom:24px;">Nos coordonnées</h2>
+
+        <div style="margin-bottom:32px;">
+          <h3>📍 Adresse</h3>
+          <p>{{ societe }}<br>{{ adresse }}</p>
+        </div>
+
+        <div style="margin-bottom:32px;">
+          <h3>📞 Téléphone</h3>
+          <p><a href="tel:+33786243823" style="font-size:1.2rem;font-weight:600;">{{ phone }}</a></p>
+        </div>
+
+        <div style="margin-bottom:32px;">
+          <h3>✉️ Email</h3>
+          <p><a href="mailto:{{ email }}">{{ email }}</a></p>
+        </div>
+
+        <div style="margin-bottom:32px;">
+          <h3>🕐 Disponibilité</h3>
+          <p>Du lundi au vendredi : 9h – 19h<br>Week-end : sur rendez-vous<br>Réponse sous 24h garantie</p>
+        </div>
+
+        <div style="background:var(--gris-100);padding:24px;border-radius:var(--radius);border-left:4px solid var(--or);">
+          <h3 style="color:var(--or);">Zone d'intervention</h3>
+          <p style="font-size:0.9rem;">Occitanie et Sud-Ouest : Tarn-et-Garonne (82), Haute-Garonne (31), Lot (46), Aveyron (12), Gers (32), Tarn (81), Lot-et-Garonne (47), Ariège (09), et plus selon votre projet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

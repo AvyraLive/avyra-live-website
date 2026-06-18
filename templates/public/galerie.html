@@ -1,0 +1,98 @@
+{% extends "public/base.html" %}
+{% block title %}Galerie{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height:40vh;">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Notre <span class="highlight">galerie</span></h1>
+      <p>Retrouvez nos prestations en images — événements d'entreprise, soirées, concerts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 25 ans Sylvea -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>25 ans Sylvea</h2>
+      <p class="subtitle">Soirée anniversaire — prestation technique complète et orchestre live.</p>
+    </div>
+
+    <!-- Vidéo Groupe Live -->
+    <div style="max-width:800px;margin:0 auto 40px;">
+      <video controls playsinline style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+        <source src="{{ url_for('static', filename='img/video-groupe-live.mp4') }}" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+      <p style="text-align:center;color:var(--gris-600);font-size:0.9rem;margin-top:12px;">Concert live — 25 ans Sylvea</p>
+    </div>
+
+    <!-- Photos Sylvea -->
+    <div class="galerie-grid">
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/groupe-live-1.jpg') }}" alt="Concert live — chanteuse, musiciens, écran LED, public dansant">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/groupe-live-2.jpg') }}" alt="Orchestre sur scène — éclairage de spectacle">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/sylvea-clip1.jpg') }}" alt="Réception sous chapiteau — éclairage violet, cocktail, invités">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/sylvea-entree.jpg') }}" alt="Entrée du site — mise en lumière extérieure, accueil des invités">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/sylvea-ambiance.jpg') }}" alt="Ambiance nocturne — éclairage architectural, foule">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/sylvea-clip2.jpg') }}" alt="Vue d'ensemble — éclairage LED, structures, public">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 50 ans Transports Morin -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>50 ans Transports Morin</h2>
+      <p class="subtitle">Événement d'entreprise — sonorisation, éclairage, vidéo et scène dans un entrepôt industriel.</p>
+    </div>
+
+    <div class="galerie-grid">
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event1.jpg') }}" alt="Soirée entreprise — scène, écran, tables cocktail, éclairage ambiance">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event3.jpg') }}" alt="La Symphonie des 50 ans — jeux de lumière, faisceaux, écran vidéo">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event4.jpg') }}" alt="Montage technique — scène, ponts, matériel son et lumière">
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event2.jpg') }}" alt="Effets de lumière — faisceaux, boule disco, ambiance soirée">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Identité -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Notre identité</h2>
+    </div>
+    <div style="text-align:center;">
+      <img src="{{ url_for('static', filename='img/logo-live-events.jpg') }}" alt="AVYRA — Live Events" style="max-width:500px;width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);">
+    </div>
+
+    <div style="text-align:center;margin-top:40px;padding:30px;background:var(--gris-100);border-radius:var(--radius);">
+      <p style="color:var(--gris-600);font-size:1rem;margin-bottom:0;">
+        <strong>D'autres photos arrivent bientôt !</strong><br>
+        La saison 2026 commence en juillet — suivez-nous pour découvrir nos nouvelles prestations en images.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

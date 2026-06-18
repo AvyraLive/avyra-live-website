@@ -1,0 +1,121 @@
+{% extends "admin/base.html" %}
+{% block title %}Embauche intermittents{% endblock %}
+{% block page_title %}👥 Embauche intermittents{% endblock %}
+
+{% block content %}
+<div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
+  <div class="stat-card">
+    <div class="stat-icon blue">📋</div>
+    <div><div class="stat-value">—</div><div class="stat-label">DPAE à faire</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">📄</div>
+    <div><div class="stat-value">—</div><div class="stat-label">CDDU générés</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon gold">💰</div>
+    <div><div class="stat-value">~230 €</div><div class="stat-label">Coût moyen / musicien</div></div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2>Simulateur de coût d'embauche</h2>
+    <span class="badge badge-info">Annexes 8 &amp; 10</span>
+  </div>
+  <div class="panel-body">
+    <form id="formEmbauche">
+      <div class="form-row-3">
+        <div class="form-group-admin">
+          <label>Type d'intermittent</label>
+          <select name="type">
+            <option value="artiste">Artiste (Annexe 10)</option>
+            <option value="technicien">Technicien (Annexe 8)</option>
+          </select>
+        </div>
+        <div class="form-group-admin">
+          <label>Cachet NET (€)</label>
+          <input type="number" name="cachet_net" value="100" step="0.01">
+        </div>
+        <div class="form-group-admin">
+          <label>Nombre de cachets</label>
+          <input type="number" name="nb_cachets" value="1" min="1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group-admin">
+          <label>Nom de l'intermittent</label>
+          <input type="text" name="nom" placeholder="Ex: Jean DUPONT">
+        </div>
+        <div class="form-group-admin">
+          <label>Date du spectacle</label>
+          <input type="date" name="date_spectacle">
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <button type="submit" class="btn btn-primary">Calculer le coût total</button>
+        <button type="button" class="btn btn-blue" onclick="alert('Génération du CDDU...')">📄 Générer le CDDU</button>
+        <button type="button" class="btn btn-outline" style="border-color:var(--gris-300);color:var(--gris-600);" onclick="alert('Génération de la DPAE...')">📋 Préparer la DPAE</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Résultat calcul -->
+<div class="panel" id="embauche-result" style="display:none;">
+  <div class="panel-header"><h2>Résultat du calcul</h2></div>
+  <div class="panel-body" id="embauche-detail"></div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2>Rappels importants</h2>
+  </div>
+  <div class="panel-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="padding:16px;background:#FFF3CD;border-radius:6px;border-left:4px solid #856404;">
+        <strong>⚠️ DPAE obligatoire</strong><br>
+        <span style="font-size:0.9rem;">À transmettre à l'URSSAF au plus tard la veille de l'embauche. Amende de 7,5 € par salarié en cas de retard.</span>
+      </div>
+      <div style="padding:16px;background:#F8D7DA;border-radius:6px;border-left:4px solid #721C24;">
+        <strong>🚫 Licence cat. 2 requise</strong><br>
+        <span style="font-size:0.9rem;">Ne pas embaucher sans le récépissé de licence d'entrepreneur de spectacles. Risque : 2 ans + 30 000 € amende.</span>
+      </div>
+      <div style="padding:16px;background:#D6EAF8;border-radius:6px;border-left:4px solid var(--bleu);">
+        <strong>📌 Cachets en NET</strong><br>
+        <span style="font-size:0.9rem;">Tous les cachets communiqués sont en NET. Toujours confirmer net/brut avec l'intermittent.</span>
+      </div>
+      <div style="padding:16px;background:#D4EDDA;border-radius:6px;border-left:4px solid #155724;">
+        <strong>📄 AEM en fin de contrat</strong><br>
+        <span style="font-size:0.9rem;">Attestation Employeur Mensuelle à remettre à chaque intermittent pour ses droits Pôle Emploi.</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('formEmbauche').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target));
+  const net = parseFloat(d.cachet_net) || 100;
+  const nb = parseInt(d.nb_cachets) || 1;
+  const brut = Math.round(net / 0.77 * 100) / 100;
+  const charges = Math.round(brut * 0.62 * 100) / 100;
+  const total = Math.round((brut + charges) * nb * 100) / 100;
+
+  document.getElementById('embauche-result').style.display = 'block';
+  document.getElementById('embauche-detail').innerHTML = `
+    <table class="data-table">
+      <tr><td><strong>Cachet net</strong></td><td>${net.toFixed(2)} €</td></tr>
+      <tr><td><strong>Cachet brut estimé</strong></td><td>${brut.toFixed(2)} €</td></tr>
+      <tr><td><strong>Charges patronales (~62%)</strong></td><td>${charges.toFixed(2)} €</td></tr>
+      <tr><td><strong>Coût total / cachet</strong></td><td style="font-weight:700;color:var(--bleu);">${(brut + charges).toFixed(2)} €</td></tr>
+      <tr><td><strong>× ${nb} cachet(s)</strong></td><td style="font-size:1.2rem;font-weight:700;color:var(--bleu);">${total.toFixed(2)} €</td></tr>
+    </table>
+    <p style="margin-top:12px;font-size:0.85rem;color:var(--gris-600);">⚠️ Estimation indicative. Les taux exacts dépendent du profil de l'intermittent.</p>
+  `;
+});
+</script>
+{% endblock %}

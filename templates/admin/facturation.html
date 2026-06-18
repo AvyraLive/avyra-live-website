@@ -1,0 +1,78 @@
+{% extends "admin/base.html" %}
+{% block title %}Facturation{% endblock %}
+{% block page_title %}🧾 Facturation{% endblock %}
+
+{% block content %}
+<div class="panel">
+  <div class="panel-header">
+    <h2>Nouvelle facture</h2>
+    <span class="badge badge-info">Agent IA</span>
+  </div>
+  <div class="panel-body">
+    <form id="formFacture">
+      <div class="form-row">
+        <div class="form-group-admin">
+          <label>Type de prestation</label>
+          <select name="type">
+            <option value="cession">Cession de spectacle (TVA 5,5%)</option>
+            <option value="technique">Prestation technique (TVA 20%)</option>
+          </select>
+        </div>
+        <div class="form-group-admin">
+          <label>N° de facture</label>
+          <input type="text" name="numero" placeholder="FA-2026-001" value="FA-2026-">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group-admin">
+          <label>Client</label>
+          <input type="text" name="client" placeholder="Comité des Fêtes de...">
+        </div>
+        <div class="form-group-admin">
+          <label>SIRET client (si applicable)</label>
+          <input type="text" name="siret_client" placeholder="XXX XXX XXX XXXXX">
+        </div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group-admin">
+          <label>Date de la prestation</label>
+          <input type="date" name="date_prestation">
+        </div>
+        <div class="form-group-admin">
+          <label>Montant HT (€)</label>
+          <input type="number" name="montant_ht" step="0.01">
+        </div>
+        <div class="form-group-admin">
+          <label>Mode de paiement</label>
+          <select name="paiement">
+            <option value="cheque">Chèque</option>
+            <option value="virement">Virement bancaire</option>
+            <option value="especes">Espèces</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group-admin">
+        <label>Description de la prestation</label>
+        <textarea name="description" rows="3" placeholder="Cession du droit de représentation du spectacle DESTINATION — [lieu] — [date]"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Générer la facture</button>
+    </form>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2>Factures émises</h2>
+  </div>
+  <div class="panel-body">
+    <table class="data-table">
+      <thead>
+        <tr><th>N°</th><th>Client</th><th>Date</th><th>HT</th><th>TVA</th><th>TTC</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="7" style="text-align:center;color:var(--gris-600);padding:24px;">Aucune facture émise pour l'instant</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

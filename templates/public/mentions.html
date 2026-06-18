@@ -1,0 +1,40 @@
+{% extends "public/base.html" %}
+{% block title %}Mentions légales{% endblock %}
+
+{% block content %}
+<section style="padding-top:100px;" class="section">
+  <div class="container" style="max-width:800px;">
+    <h1>Mentions légales</h1>
+
+    <h2 style="margin-top:40px;">Éditeur du site</h2>
+    <p>{{ societe }}<br>
+    Société par actions simplifiée (SAS) au capital de 9 000 €<br>
+    SIRET : {{ siret }}<br>
+    TVA intracommunautaire : {{ tva_intra if tva_intra else 'FR 10 105 957 104' }}<br>
+    Code APE : 9001Z — Arts du spectacle vivant<br>
+    Siège social : {{ adresse }}<br>
+    Président : {{ president }}<br>
+    Téléphone : {{ phone }}<br>
+    Email : <a href="mailto:{{ email }}">{{ email }}</a></p>
+
+    <h2>Hébergement</h2>
+    <p>[À compléter avec les informations de votre hébergeur : nom, adresse, téléphone]</p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>L'ensemble du contenu de ce site (textes, images, logos, vidéos) est la propriété exclusive de {{ societe }} ou de ses partenaires. Toute reproduction, même partielle, est interdite sans autorisation écrite préalable.</p>
+
+    <h2>Protection des données personnelles</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données personnelles.</p>
+    <p>Les données collectées via le formulaire de contact (nom, email, téléphone, message) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni cédées ni vendues à des tiers.</p>
+    <p>Pour exercer vos droits, contactez-nous à : <a href="mailto:{{ email }}">{{ email }}</a></p>
+    <p>Responsable du traitement : {{ president }}, {{ societe }}.</p>
+
+    <h2>Cookies</h2>
+    <p>Ce site n'utilise pas de cookies de suivi ni de cookies publicitaires. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être déposés.</p>
+
+    <h2>Crédits</h2>
+    <p>Conception et développement : AVYRA-LIVE<br>
+    Photographies : [À compléter]</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends "public/base.html" %}
+{% block title %}Prestations techniques{% endblock %}
+{% block meta_desc %}Prestations techniques événementielles : sonorisation, éclairage, vidéo et écrans LED. AVYRA-LIVE, votre partenaire technique en Occitanie.{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height:60vh;">
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-badge">🎛️ Son • Lumière • Vidéo</span>
+      <h1>Prestation technique <span class="highlight">clé en main</span></h1>
+      <p>De la conception technique à l'exploitation le jour J, notre équipe de techniciens professionnels assure la réussite de vos événements d'entreprise, galas, conventions et séminaires.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">🔊</div>
+        <h3>Sonorisation</h3>
+        <p>Systèmes line-array pour les grandes jauges, sono compacte pour les espaces intérieurs. Console numérique, micros HF, monitoring artistes.</p>
+        <ul style="margin-top:12px;padding-left:20px;color:var(--gris-600);font-size:0.9rem;">
+          <li>Conférences et séminaires</li>
+          <li>Soirées et galas</li>
+          <li>Festivals et plein air</li>
+          <li>Régisseur son dédié</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Éclairage</h3>
+        <p>LED, lyres, wash, beam — création d'ambiances sur mesure. Mise en lumière architecturale pour vos lieux de réception.</p>
+        <ul style="margin-top:12px;padding-left:20px;color:var(--gris-600);font-size:0.9rem;">
+          <li>Éclairage scénique</li>
+          <li>Mise en lumière architecturale</li>
+          <li>Ambiances thématiques</li>
+          <li>Console DMX, régisseur lumière</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <h3>Vidéo</h3>
+        <p>Écrans LED géants, vidéoprojection HD, diffusion de visuels et logos. Captation live pour retransmission sur écran.</p>
+        <ul style="margin-top:12px;padding-left:20px;color:var(--gris-600);font-size:0.9rem;">
+          <li>Écrans LED indoor/outdoor</li>
+          <li>Vidéoprojection HD</li>
+          <li>Habillage visuel personnalisé</li>
+          <li>Captation et diffusion live</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Photos de prestations techniques réelles -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>Nos réalisations</h2>
+      <p class="subtitle">Quelques exemples de prestations techniques réalisées par AVYRA-LIVE.</p>
+    </div>
+    <div class="galerie-grid">
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event4.jpg') }}" alt="Montage technique — scène, ponts, matériel son et lumière dans un entrepôt">
+        <p style="text-align:center;color:var(--gris-600);font-size:0.85rem;margin-top:8px;">Montage scène et ponts — 50 ans Transports Morin</p>
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event1.jpg') }}" alt="Événement d'entreprise — scène, écran, éclairage, tables cocktail">
+        <p style="text-align:center;color:var(--gris-600);font-size:0.85rem;margin-top:8px;">Soirée entreprise clé en main — son, lumière, vidéo</p>
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/morin-event3.jpg') }}" alt="Jeux de lumière — faisceaux, écran vidéo, ambiance bleue">
+        <p style="text-align:center;color:var(--gris-600);font-size:0.85rem;margin-top:8px;">Éclairage scénique et vidéo — La Symphonie des 50 ans</p>
+      </div>
+      <div class="galerie-item">
+        <img src="{{ url_for('static', filename='img/sylvea-clip1.jpg') }}" alt="Réception sous chapiteau — éclairage violet, cocktail">
+        <p style="text-align:center;color:var(--gris-600);font-size:0.85rem;margin-top:8px;">Mise en lumière sous chapiteau — 25 ans Sylvea</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Nos engagements</h2>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div style="margin-bottom:24px;">
+          <h3>🎯 Étude technique personnalisée</h3>
+          <p>Chaque événement est unique. Nous visitons votre lieu, évaluons les contraintes techniques et proposons une solution sur mesure.</p>
+        </div>
+        <div style="margin-bottom:24px;">
+          <h3>📦 Transport et installation inclus</h3>
+          <p>Livraison, montage, exploitation et démontage — tout est compris dans notre prestation. Vous n'avez rien à gérer.</p>
+        </div>
+        <div>
+          <h3>🔒 Assurance et conformité</h3>
+          <p>Matériel vérifié, assurance RC Pro, respect des normes ERP. Votre sérénité est notre priorité.</p>
+        </div>
+      </div>
+      <div>
+        <div style="margin-bottom:24px;">
+          <h3>👤 Interlocuteur technique unique</h3>
+          <p>Un régisseur général coordonne l'ensemble de la prestation. Un seul numéro à appeler, avant et pendant l'événement.</p>
+        </div>
+        <div style="margin-bottom:24px;">
+          <h3>📍 Réactivité Occitanie / Sud-Ouest</h3>
+          <p>Basés à Montauban, nous intervenons rapidement dans le Tarn-et-Garonne, la Haute-Garonne, le Lot, l'Aveyron, le Gers, le Tarn et au-delà.</p>
+        </div>
+        <div>
+          <h3>🎵 Option spectacle</h3>
+          <p>Besoin d'artistes en plus de la technique ? Nous trouvons le groupe ou l'orchestre qui conviendra à votre soirée. Un seul prestataire, zéro complication.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:linear-gradient(135deg, var(--bleu), #2980B9);color:var(--blanc);text-align:center;">
+  <div class="container">
+    <h2 style="color:var(--blanc);">Étude technique gratuite</h2>
+    <p style="color:rgba(255,255,255,0.85);font-size:1.1rem;max-width:600px;margin:0 auto 32px;">Décrivez-nous votre événement et recevez une proposition technique détaillée sous 48h.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Demander une étude technique</a>
+  </div>
+</section>
+{% endblock %}

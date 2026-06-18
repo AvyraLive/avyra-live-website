@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin{% endblock %} — AVYRA-LIVE</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="{{ url_for('static', filename='img/logo-clair.png') }}" alt="">
+      <span>AVYRA-LIVE</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-label">Tableau de bord</div>
+      <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+        <span class="icon">📊</span> Dashboard
+      </a>
+
+      <div class="sidebar-label">Agents IA</div>
+      <a href="{{ url_for('admin_devis') }}" class="{% if request.endpoint == 'admin_devis' %}active{% endif %}">
+        <span class="icon">📝</span> Devis
+      </a>
+      <a href="{{ url_for('admin_facturation') }}" class="{% if request.endpoint == 'admin_facturation' %}active{% endif %}">
+        <span class="icon">🧾</span> Facturation
+      </a>
+      <a href="{{ url_for('admin_prospection') }}" class="{% if request.endpoint == 'admin_prospection' %}active{% endif %}">
+        <span class="icon">🔍</span> Prospection
+      </a>
+      <a href="{{ url_for('admin_mailing') }}" class="{% if request.endpoint == 'admin_mailing' %}active{% endif %}">
+        <span class="icon">✉️</span> Mailing
+      </a>
+      <a href="{{ url_for('admin_embauche') }}" class="{% if request.endpoint == 'admin_embauche' %}active{% endif %}">
+        <span class="icon">👥</span> Embauche intermittents
+      </a>
+      <a href="{{ url_for('admin_comptabilite') }}" class="{% if request.endpoint == 'admin_comptabilite' %}active{% endif %}">
+        <span class="icon">📒</span> Comptabilité
+      </a>
+
+      <div class="sidebar-label">Site</div>
+      <a href="{{ url_for('index') }}" target="_blank">
+        <span class="icon">🌐</span> Voir le site
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="{{ url_for('admin_logout') }}">🔓 Déconnexion</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+      <div class="admin-topbar-right">
+        <span class="user-name">{{ president }}</span>
+      </div>
+    </div>
+    <div class="admin-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for cat, msg in messages %}
+            <div class="flash flash-{{ cat }}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

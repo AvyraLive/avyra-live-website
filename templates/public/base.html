@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}AVYRA-LIVE{% endblock %} — Spectacle vivant &amp; Événementiel</title>
+  <meta name="description" content="{% block meta_desc %}AVYRA-LIVE : production de spectacle vivant, sonorisation, éclairage scénique, captation vidéo live, orchestre et DJ pour galas, festivals, soirées d'entreprise en Occitanie.{% endblock %}">
+  <meta name="keywords" content="{% block meta_keywords %}spectacle vivant, sonorisation, éclairage événementiel, orchestre soirée, DJ événementiel, captation vidéo live, gala entreprise, festival Occitanie, prestation technique son lumière, groupe musique mariage, Montauban, Toulouse, Sud-Ouest{% endblock %}">
+  <meta name="author" content="SAS AVYRA-LIVE">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ request.url }}">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% block og_title %}AVYRA-LIVE — Spectacle vivant & Événementiel{% endblock %}">
+  <meta property="og:description" content="{% block og_desc %}Production de spectacle vivant et prestations techniques événementielles sur mesure. Sonorisation, lumière, vidéo, orchestre, DJ.{% endblock %}">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="AVYRA-LIVE">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EventPlanner",
+    "name": "AVYRA-LIVE",
+    "description": "Production de spectacle vivant et prestations techniques événementielles sur mesure",
+    "url": "{{ request.url_root }}",
+    "telephone": "+33786243823",
+    "email": "contact@avyra-live.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4 Rue Honoré de Balzac",
+      "addressLocality": "Montauban",
+      "postalCode": "82000",
+      "addressCountry": "FR"
+    },
+    "areaServed": ["Occitanie", "Nouvelle-Aquitaine", "Sud-Ouest"],
+    "priceRange": "€€",
+    "sameAs": ["https://www.instagram.com/avyralive/"]
+  }
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="{{ url_for('index') }}" class="navbar-logo" style="display:flex;align-items:center;text-decoration:none;">
+        <span style="font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:3px;">AVYRA-LIVE</span>
+      </a>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Accueil</a></li>
+        <li><a href="{{ url_for('techniques') }}" class="{% if request.endpoint == 'techniques' %}active{% endif %}">Prestations techniques</a></li>
+        <li><a href="{{ url_for('orchestre') }}" class="{% if request.endpoint == 'orchestre' %}active{% endif %}">Groupes &amp; Artistes</a></li>
+        <li><a href="{{ url_for('galerie') }}" class="{% if request.endpoint == 'galerie' %}active{% endif %}">Galerie</a></li>
+        <li><a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-sm">Devis gratuit</a>
+      </div>
+      <div class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Bandeau logo pleine largeur — animé -->
+  <div class="logo-banner" style="background:#0A0A14;margin-top:70px;height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="AVYRA-LIVE" class="logo-animated" style="height:380px;">
+  </div>
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div style="padding-top:80px;">
+        <div class="container">
+          {% for cat, msg in messages %}
+            <div class="flash flash-{{ cat }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="{{ url_for('static', filename='img/logo-clair.png') }}" alt="AVYRA-LIVE" style="height:36px;margin-bottom:16px;">
+          <p style="font-size:0.9rem;max-width:300px;">Production de spectacle vivant et prestations techniques événementielles en Occitanie et Sud-Ouest.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <p><a href="{{ url_for('orchestre') }}">Groupes &amp; Artistes</a></p>
+          <p><a href="{{ url_for('techniques') }}">Prestations techniques</a></p>
+          <p><a href="{{ url_for('galerie') }}">Galerie</a></p>
+          <p><a href="{{ url_for('contact') }}">Contact</a></p>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>{{ phone }}</p>
+          <p><a href="mailto:{{ email }}">{{ email }}</a></p>
+          <p>{{ adresse }}</p>
+        </div>
+        <div>
+          <h4>Suivez-nous</h4>
+          <div class="footer-socials">
+            <a href="#" title="Facebook">📘</a>
+            <a href="https://www.instagram.com/avyralive/" target="_blank" title="Instagram">📷</a>
+            <a href="#" title="YouTube">▶️</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {{ year }} {{ societe }} — SIRET {{ siret }} — <a href="{{ url_for('mentions') }}">Mentions légales</a></span>
+        <span>Conçu avec soin à Montauban</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Tableau de bord{% endblock %}
+
+{% block content %}
+<!-- Stats -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon blue">📝</div>
+    <div>
+      <div class="stat-value" id="stat-devis">—</div>
+      <div class="stat-label">Devis en cours</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">🧾</div>
+    <div>
+      <div class="stat-value" id="stat-factures">—</div>
+      <div class="stat-label">Factures émises</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon gold">🔍</div>
+    <div>
+      <div class="stat-value" id="stat-prospects">~7000</div>
+      <div class="stat-label">Prospects en base</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon red">📅</div>
+    <div>
+      <div class="stat-value">9</div>
+      <div class="stat-label">Dates saison 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- Actions rapides -->
+<div class="panel">
+  <div class="panel-header">
+    <h2>Actions rapides</h2>
+  </div>
+  <div class="panel-body">
+    <div class="quick-actions">
+      <a href="{{ url_for('admin_devis') }}" class="quick-action">
+        <span class="icon">📝</span>
+        <span class="label">Nouveau devis</span>
+      </a>
+      <a href="{{ url_for('admin_facturation') }}" class="quick-action">
+        <span class="icon">🧾</span>
+        <span class="label">Nouvelle facture</span>
+      </a>
+      <a href="{{ url_for('admin_prospection') }}" class="quick-action">
+        <span class="icon">🔍</span>
+        <span class="label">Rechercher un prospect</span>
+      </a>
+      <a href="{{ url_for('admin_mailing') }}" class="quick-action">
+        <span class="icon">✉️</span>
+        <span class="label">Envoyer un mailing</span>
+      </a>
+      <a href="{{ url_for('admin_embauche') }}" class="quick-action">
+        <span class="icon">👥</span>
+        <span class="label">Embaucher un intermittent</span>
+      </a>
+      <a href="{{ url_for('admin_comptabilite') }}" class="quick-action">
+        <span class="icon">📒</span>
+        <span class="label">Saisir une écriture</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Prochaines dates -->
+<div class="panel">
+  <div class="panel-header">
+    <h2>Prochaines dates — Saison DESTINATION 2026</h2>
+  </div>
+  <div class="panel-body">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lieu</th>
+          <th>Organisateur</th>
+          <th>Statut contrat</th>
+          <th>Montant TTC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>18/07/2026</td><td>L'Hospitalet (48)</td><td>CdF L'Hospitalet</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+        <tr>
+          <td>25/07/2026</td><td>Anglars-Juillac (46)</td><td>CdF Anglars-Juillac</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+        <tr>
+          <td>01/08/2026</td><td>Luzech (46)</td><td>CdF Luzech</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+        <tr>
+          <td>07/08/2026</td><td>Florac (48)</td><td>CdF Florac</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>6 890 €</td>
+        </tr>
+        <tr>
+          <td>08/08/2026</td><td>Pied de Borne (48)</td><td>CdF Pied de Borne</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+        <tr>
+          <td>14/08/2026</td><td>Pibrac (31)</td><td>Mairie Pibrac</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+        <tr>
+          <td>15/08/2026</td><td>Cornus (12)</td><td>CdF Cornus</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+        <tr>
+          <td>22/08/2026</td><td>Lauzerte (82)</td><td>CdF Lauzerte</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>6 700 €</td>
+        </tr>
+        <tr>
+          <td>05/09/2026</td><td>Caylus (82)</td><td>CdF Caylus</td>
+          <td><span class="badge badge-warning">À signer</span></td><td>5 300 €</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

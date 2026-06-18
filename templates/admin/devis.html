@@ -1,0 +1,112 @@
+{% extends "admin/base.html" %}
+{% block title %}Devis{% endblock %}
+{% block page_title %}📝 Générateur de devis{% endblock %}
+
+{% block content %}
+<div class="panel">
+  <div class="panel-header">
+    <h2>Nouveau devis</h2>
+    <span class="badge badge-info">Agent IA</span>
+  </div>
+  <div class="panel-body">
+    <form id="formDevis">
+      <div class="form-row">
+        <div class="form-group-admin">
+          <label>Type de prestation</label>
+          <select name="type" id="devis-type">
+            <option value="cession">Cession de spectacle (TVA 5,5%)</option>
+            <option value="technique">Prestation technique (TVA 20%)</option>
+            <option value="mixte">Mixte (spectacle + technique)</option>
+          </select>
+        </div>
+        <div class="form-group-admin">
+          <label>Formule orchestre</label>
+          <select name="formule" id="devis-formule">
+            <option value="">— Aucune (technique seule) —</option>
+            <option value="duo">Duo</option>
+            <option value="trio">Trio</option>
+            <option value="groupe">Groupe 5-7</option>
+            <option value="show_total">Show Total (13 artistes)</option>
+            <option value="mark_hauser">Mark Hauser (bavaroise)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group-admin">
+          <label>Client (nom / structure)</label>
+          <input type="text" name="client" placeholder="Ex: Comité des Fêtes de Lauzerte">
+        </div>
+        <div class="form-group-admin">
+          <label>Lieu de l'événement</label>
+          <input type="text" name="lieu" placeholder="Ex: Salle des fêtes, Lauzerte (82)">
+        </div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group-admin">
+          <label>Date de l'événement</label>
+          <input type="date" name="date_event">
+        </div>
+        <div class="form-group-admin">
+          <label>Nombre de personnes estimé</label>
+          <input type="number" name="jauge" placeholder="500">
+        </div>
+        <div class="form-group-admin">
+          <label>Montant HT proposé (€)</label>
+          <input type="number" name="montant_ht" placeholder="5000">
+        </div>
+      </div>
+      <div class="form-group-admin">
+        <label>Prestations complémentaires</label>
+        <textarea name="complement" rows="3" placeholder="DJ set, location matériel supplémentaire, hébergement..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Générer le devis</button>
+    </form>
+  </div>
+</div>
+
+<!-- Résultat -->
+<div class="panel" id="devis-result" style="display:none;">
+  <div class="panel-header">
+    <h2>Devis généré</h2>
+    <button class="btn btn-blue btn-sm" onclick="alert('Téléchargement du PDF...')">📄 Télécharger PDF</button>
+  </div>
+  <div class="panel-body" id="devis-preview"></div>
+</div>
+
+<!-- Historique -->
+<div class="panel">
+  <div class="panel-header">
+    <h2>Derniers devis</h2>
+  </div>
+  <div class="panel-body">
+    <table class="data-table">
+      <thead>
+        <tr><th>N°</th><th>Client</th><th>Date</th><th>Montant TTC</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>DV-2026-001</td><td>Festival Anglars-Juillac</td><td>15/06/2026</td>
+          <td>5 300 €</td><td><span class="badge badge-success">Accepté</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('formDevis').addEventListener('submit', e => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  document.getElementById('devis-result').style.display = 'block';
+  document.getElementById('devis-preview').innerHTML = `
+    <p><strong>Devis pour :</strong> ${data.client || '—'}</p>
+    <p><strong>Type :</strong> ${data.type} | <strong>Formule :</strong> ${data.formule || 'N/A'}</p>
+    <p><strong>Date :</strong> ${data.date_event} | <strong>Lieu :</strong> ${data.lieu || '—'}</p>
+    <p><strong>Montant HT :</strong> ${data.montant_ht || '—'} € | <strong>TVA :</strong> ${data.type === 'cession' ? '5,5%' : '20%'}</p>
+    <p style="margin-top:12px;padding:12px;background:#D4EDDA;border-radius:6px;">✅ Devis prêt à être finalisé et envoyé au client.</p>
+  `;
+});
+</script>
+{% endblock %}

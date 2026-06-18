@@ -1,0 +1,66 @@
+{% extends "admin/base.html" %}
+{% block title %}Mailing{% endblock %}
+{% block page_title %}✉️ Agent Mailing{% endblock %}
+
+{% block content %}
+<div class="panel">
+  <div class="panel-header">
+    <h2>Nouvelle campagne</h2>
+    <span class="badge badge-info">Agent IA</span>
+  </div>
+  <div class="panel-body">
+    <form id="formMailing">
+      <div class="form-row">
+        <div class="form-group-admin">
+          <label>Template email</label>
+          <select name="template">
+            <option value="fetes">📌 Fêtes / Orchestre DESTINATION (Q4 2026)</option>
+            <option value="technique">📌 Technique / Événementiel (Q4 2026)</option>
+            <option value="custom">✏️ Email personnalisé</option>
+          </select>
+        </div>
+        <div class="form-group-admin">
+          <label>Cible</label>
+          <select name="cible">
+            <option value="tous">Tous les prospects avec email</option>
+            <option value="chauds">🔥 Prospects chauds uniquement</option>
+            <option value="tiedes">🌤️ Prospects tièdes</option>
+            <option value="departement">Par département</option>
+            <option value="selection">Sélection manuelle</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group-admin">
+        <label>Objet du mail</label>
+        <input type="text" name="sujet" value="Vos événements d'automne-hiver 2026 méritent un orchestre à la hauteur">
+      </div>
+      <div class="form-group-admin">
+        <label>Aperçu avant envoi</label>
+        <div style="background:var(--gris-100);padding:16px;border-radius:6px;font-size:0.9rem;color:var(--gris-600);">
+          L'agent vous montrera chaque email avant envoi. Vous validez ou modifiez individuellement.
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <button type="submit" class="btn btn-primary">Lancer la campagne</button>
+        <button type="button" class="btn btn-outline" style="border-color:var(--gris-300);color:var(--gris-600);" onclick="alert('Aperçu du template...')">👁️ Prévisualiser le template</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2>Historique des envois</h2>
+  </div>
+  <div class="panel-body">
+    <table class="data-table">
+      <thead>
+        <tr><th>Date</th><th>Template</th><th>Destinataire</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="4" style="text-align:center;color:var(--gris-600);padding:24px;">Aucun envoi pour l'instant</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

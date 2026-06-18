@@ -1,0 +1,89 @@
+{% extends "admin/base.html" %}
+{% block title %}Prospection{% endblock %}
+{% block page_title %}🔍 Prospection{% endblock %}
+
+{% block content %}
+<div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
+  <div class="stat-card">
+    <div class="stat-icon gold">🔥</div>
+    <div><div class="stat-value">—</div><div class="stat-label">Prospects chauds</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon blue">🌤️</div>
+    <div><div class="stat-value">—</div><div class="stat-label">Prospects tièdes</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">📊</div>
+    <div><div class="stat-value">~7000</div><div class="stat-label">Total en base</div></div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2>Rechercher des prospects</h2>
+    <span class="badge badge-info">Base SQLite</span>
+  </div>
+  <div class="panel-body">
+    <form id="formSearch" style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div class="form-group-admin" style="flex:1;min-width:200px;">
+        <label>Département</label>
+        <select name="departement">
+          <option value="">Tous</option>
+          <option value="82">82 — Tarn-et-Garonne</option>
+          <option value="31">31 — Haute-Garonne</option>
+          <option value="46">46 — Lot</option>
+          <option value="12">12 — Aveyron</option>
+          <option value="32">32 — Gers</option>
+          <option value="81">81 — Tarn</option>
+          <option value="48">48 — Lozère</option>
+          <option value="47">47 — Lot-et-Garonne</option>
+          <option value="09">09 — Ariège</option>
+        </select>
+      </div>
+      <div class="form-group-admin" style="flex:1;min-width:200px;">
+        <label>Type</label>
+        <select name="type">
+          <option value="">Tous</option>
+          <option value="mairie">Mairie</option>
+          <option value="cdf">Comité des fêtes</option>
+          <option value="association">Association</option>
+          <option value="entreprise">Entreprise</option>
+        </select>
+      </div>
+      <div class="form-group-admin" style="flex:1;min-width:200px;">
+        <label>Statut</label>
+        <select name="statut">
+          <option value="">Tous</option>
+          <option value="chaud">🔥 Chaud</option>
+          <option value="tiede">🌤️ Tiède</option>
+          <option value="froid">❄️ Froid</option>
+          <option value="a_contacter">📞 À contacter</option>
+        </select>
+      </div>
+      <div class="form-group-admin" style="flex:2;min-width:250px;">
+        <label>Recherche libre</label>
+        <input type="text" name="q" placeholder="Nom, ville, email...">
+      </div>
+      <div style="display:flex;align-items:flex-end;">
+        <button type="submit" class="btn btn-blue">Rechercher</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h2>Résultats</h2>
+  </div>
+  <div class="panel-body">
+    <table class="data-table">
+      <thead>
+        <tr><th>Nom</th><th>Ville</th><th>Dép.</th><th>Email</th><th>Téléphone</th><th>Statut</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="prospects-results">
+        <tr><td colspan="7" style="text-align:center;color:var(--gris-600);padding:24px;">Lancez une recherche pour afficher les prospects</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends "public/base.html" %}
+{% block title %}Accueil — Spectacle vivant & Événementiel Occitanie{% endblock %}
+{% block meta_desc %}AVYRA-LIVE, créateurs d'expériences événementielles sur mesure : sonorisation, éclairage scénique, captation vidéo live, orchestre, DJ, spectacle vivant. Galas, festivals, soirées d'entreprise en Occitanie et Sud-Ouest.{% endblock %}
+{% block meta_keywords %}spectacle vivant Montauban, sonorisation événementielle, éclairage scénique, orchestre soirée gala, DJ événementiel, captation vidéo live, festival Occitanie, prestation technique son lumière, groupe musique mariage Toulouse{% endblock %}
+
+{% block content %}
+<!-- Hero plein écran avec vidéo en fond -->
+<section class="hero" style="position:relative;min-height:100vh;overflow:hidden;">
+  <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.4);">
+    <source src="{{ url_for('static', filename='img/video-sylvea-hero.mp4') }}" type="video/mp4">
+  </video>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="hero-content">
+      <p style="font-size:0.85rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:12px;">Créateurs d'expériences</p>
+      <h1 style="font-size:3.2rem;line-height:1.15;">Nous transformons vos événements<br><span class="highlight">en moments inoubliables.</span></h1>
+      <p style="font-size:1.15rem;max-width:620px;color:rgba(255,255,255,0.85);margin-bottom:32px;">Sonorisation, design lumière, captation vidéo live et programmation artistique sur mesure — nous orchestrons chaque détail pour que votre soirée laisse une empreinte durable.</p>
+      <div class="hero-buttons">
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Parlons de votre projet</a>
+        <a href="{{ url_for('galerie') }}" class="btn btn-outline btn-lg">Découvrir nos réalisations</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophie / Manifeste — inspiré Médiane & PUR'Events -->
+<section class="section" style="padding:80px 0;">
+  <div class="container" style="max-width:900px;text-align:center;">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px;">Notre philosophie</p>
+    <h2 style="font-size:2rem;line-height:1.4;font-weight:400;color:var(--noir);">Nous sommes convaincus que chaque événement a le pouvoir <strong>d'inspirer</strong>, de <strong>fédérer</strong> et de <strong>marquer les esprits</strong>. Chez AVYRA-LIVE, nous mettons l'émotion et l'exigence technique au service d'expériences collectives qui vous ressemblent.</h2>
+    <div style="margin-top:32px;">
+      <a href="{{ url_for('contact') }}" class="btn btn-outline" style="border-color:var(--noir);color:var(--noir);">Discutons de votre vision</a>
+    </div>
+  </div>
+</section>
+
+<!-- Nos expertises — catégories premium style Médiane -->
+<section class="section section-alt" style="padding:80px 0;">
+  <div class="container">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;">Nos expertises</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:32px;">
+      <div>
+        <h3 style="font-size:1.6rem;margin-bottom:12px;">Production technique</h3>
+        <p style="color:var(--gris-600);line-height:1.7;">Sonorisation haute-fidélité, scénographie lumineuse, captation vidéo live et écrans LED grand format. De l'étude de faisabilité au démontage, notre direction technique assure une exécution irréprochable.</p>
+        <p style="margin-top:16px;"><a href="{{ url_for('techniques') }}" style="color:var(--or);font-weight:600;text-decoration:none;">Découvrir →</a></p>
+      </div>
+      <div>
+        <h3 style="font-size:1.6rem;margin-bottom:12px;">Spectacle vivant</h3>
+        <p style="color:var(--gris-600);line-height:1.7;">Programmation artistique sur mesure — orchestres live, musiciens, DJ sets. Nous sélectionnons les talents qui donneront une âme à votre soirée et créeront l'émotion au bon moment.</p>
+        <p style="margin-top:16px;"><a href="{{ url_for('orchestre') }}" style="color:var(--or);font-weight:600;text-decoration:none;">Découvrir →</a></p>
+      </div>
+      <div>
+        <h3 style="font-size:1.6rem;margin-bottom:12px;">Événements clé en main</h3>
+        <p style="color:var(--gris-600);line-height:1.7;">Galas d'entreprise, soirées de prestige, cérémonies, lancements de produit, conventions — nous réunissons la technique et l'artistique sous une seule direction pour des événements cohérents et mémorables.</p>
+        <p style="margin-top:16px;"><a href="{{ url_for('contact') }}" style="color:var(--or);font-weight:600;text-decoration:none;">Votre projet →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nos univers — liste des typologies d'événements -->
+<section class="section" style="background:var(--noir);color:var(--blanc);padding:80px 0;">
+  <div class="container">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;">Nos univers</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px 48px;margin-top:32px;">
+      <div>
+        <h4 style="color:var(--or);font-size:1.05rem;margin-bottom:10px;">Corporate</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Conventions<br>Séminaires<br>Soirées d'entreprise<br>Team building<br>Lancements de produit</p>
+      </div>
+      <div>
+        <h4 style="color:var(--or);font-size:1.05rem;margin-bottom:10px;">Spectacle &amp; culture</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Concerts<br>Festivals<br>Fêtes votives<br>Cérémonies officielles<br>Programmation artistique</p>
+      </div>
+      <div>
+        <h4 style="color:var(--or);font-size:1.05rem;margin-bottom:10px;">Réceptions privées</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Soirées de gala<br>Anniversaires de prestige<br>Réveillons<br>Réceptions élégantes<br>Mariages &amp; cocktails</p>
+      </div>
+      <div>
+        <h4 style="color:var(--or);font-size:1.05rem;margin-bottom:10px;">Grand public</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">Journées portes ouvertes<br>Inaugurations<br>Événements municipaux<br>Foires &amp; salons<br>Animations de plein air</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nos valeurs — inspiré PUR'Events -->
+<section class="section" style="padding:80px 0;">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;">Ce qui nous anime</p>
+      <h2>Nos engagements</h2>
+    </div>
+    <div class="grid-3" style="gap:40px;">
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:16px;">🎯</div>
+        <h3 style="font-size:1.1rem;margin-bottom:12px;">Exigence &amp; précision</h3>
+        <p style="color:var(--gris-600);font-size:0.95rem;line-height:1.7;">Chaque câble, chaque projecteur, chaque note — nous portons une attention obsessionnelle au détail pour que la technique soit invisible et l'émotion, totale.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:16px;">🤝</div>
+        <h3 style="font-size:1.1rem;margin-bottom:12px;">Co-construction</h3>
+        <p style="color:var(--gris-600);font-size:0.95rem;line-height:1.7;">Votre événement vous ressemble. Nous plaçons vos envies au centre du processus créatif pour concevoir ensemble une expérience 100% personnalisée.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:16px;">✨</div>
+        <h3 style="font-size:1.1rem;margin-bottom:12px;">Créativité &amp; audace</h3>
+        <p style="color:var(--gris-600);font-size:0.95rem;line-height:1.7;">Pas de formules toutes faites. Nous inventons des scénographies originales et des ambiances sur mesure pour dépasser vos attentes et surprendre vos invités.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pourquoi AVYRA-LIVE — arguments business -->
+<section class="section section-alt" style="padding:80px 0;">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;gap:60px;">
+      <div>
+        <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:8px;">Pourquoi nous choisir</p>
+        <h2 style="font-size:1.8rem;line-height:1.3;">Un seul interlocuteur.<br>Technique + artistique.<br>Zéro compromis.</h2>
+        <p style="font-size:1.05rem;color:var(--gris-600);margin:24px 0;line-height:1.7;">L'avantage d'AVYRA-LIVE, c'est de réunir la production technique et la programmation artistique sous une même direction. Vous gagnez en cohérence, en réactivité et en budget — sans jamais sacrifier la qualité.</p>
+      </div>
+      <div>
+        <div style="margin-bottom:24px;padding:20px;background:var(--blanc);border-radius:var(--radius);box-shadow:var(--shadow);">
+          <h4 style="margin-bottom:8px;">💰 TVA réduite 5,5% sur le spectacle vivant</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">Un avantage fiscal réel qui optimise directement le budget de votre soirée.</p>
+        </div>
+        <div style="margin-bottom:24px;padding:20px;background:var(--blanc);border-radius:var(--radius);box-shadow:var(--shadow);">
+          <h4 style="margin-bottom:8px;">📦 Logistique intégrale</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">Transport, montage, exploitation, démontage — tout est inclus. Concentrez-vous sur vos invités.</p>
+        </div>
+        <div style="margin-bottom:24px;padding:20px;background:var(--blanc);border-radius:var(--radius);box-shadow:var(--shadow);">
+          <h4 style="margin-bottom:8px;">🔒 RC Pro &amp; conformité</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">Assurance professionnelle, matériel vérifié, normes ERP respectées. Votre sérénité est notre priorité.</p>
+        </div>
+        <div style="padding:20px;background:var(--blanc);border-radius:var(--radius);box-shadow:var(--shadow);">
+          <h4 style="margin-bottom:8px;">📍 Ancrage Sud-Ouest</h4>
+          <p style="color:var(--gris-600);font-size:0.9rem;margin:0;">Basés à Montauban, nous intervenons de Toulouse à Bordeaux et dans toute l'Occitanie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chiffres clés -->
+<section class="section" style="padding:60px 0;">
+  <div class="container">
+    <div class="grid-4" style="text-align:center;">
+      <div>
+        <div style="font-size:2.8rem;font-weight:700;color:var(--or);">20+</div>
+        <div style="color:var(--gris-600);font-size:0.9rem;margin-top:4px;">Années d'expertise</div>
+      </div>
+      <div>
+        <div style="font-size:2.8rem;font-weight:700;color:var(--or);">500+</div>
+        <div style="color:var(--gris-600);font-size:0.9rem;margin-top:4px;">Événements produits</div>
+      </div>
+      <div>
+        <div style="font-size:2.8rem;font-weight:700;color:var(--or);">3</div>
+        <div style="color:var(--gris-600);font-size:0.9rem;margin-top:4px;">Pôles de compétences</div>
+      </div>
+      <div>
+        <div style="font-size:2.8rem;font-weight:700;color:var(--or);">100%</div>
+        <div style="color:var(--gris-600);font-size:0.9rem;margin-top:4px;">Sur mesure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="section" style="background:linear-gradient(135deg, var(--noir), #1a1a2e);color:var(--blanc);text-align:center;padding:100px 0;">
+  <div class="container" style="max-width:700px;">
+    <p style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px;">Votre projet commence ici</p>
+    <h2 style="color:var(--blanc);font-size:2.2rem;margin-bottom:20px;">Imaginons ensemble votre prochain événement.</h2>
+    <p style="color:rgba(255,255,255,0.75);font-size:1.05rem;margin-bottom:36px;">Décrivez-nous votre vision — nous vous proposons une mise en scène technique et artistique à la hauteur de vos ambitions. Réponse sous 24h.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Parlons de votre projet</a>
+      <a href="tel:+33786243823" class="btn btn-outline btn-lg">📞 {{ phone }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
