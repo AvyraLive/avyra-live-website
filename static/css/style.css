@@ -255,22 +255,168 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .footer-socials a:hover { background: var(--or); color: var(--noir); }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — Multi-device
    ═══════════════════════════════════════════════ */
+
+/* ─── Large desktop (1400px+) ─── */
+@media (min-width: 1400px) {
+  .container { max-width: 1320px; }
+}
+
+/* ─── Tablet landscape / petit desktop (1024px - 1199px) ─── */
+@media (max-width: 1199px) {
+  .container { max-width: 960px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+  .footer-grid > div:last-child { grid-column: 1 / -1; }
+}
+
+/* ─── Tablet portrait / iPad (768px - 1023px) ─── */
+@media (max-width: 1023px) {
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 1.8rem; }
+  .container { padding: 0 20px; }
+  .section { padding: 60px 0; }
+  .grid-2 { grid-template-columns: 1fr; gap: 32px; }
+  .grid-3 { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .navbar-nav { gap: 20px; }
+  .navbar-nav a { font-size: 0.85rem; }
+  .navbar-cta .btn { padding: 8px 16px; font-size: 0.8rem; }
+  .hero { min-height: 85vh; }
+  .hero h1, .hero [style*="font-size:3.2rem"] { font-size: 2.4rem !important; }
+  .hero p { font-size: 1.05rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .formules-table { font-size: 0.9rem; }
+  .formules-table th, .formules-table td { padding: 12px 14px; }
+  /* Logo banner responsive */
+  .logo-banner { height: 120px !important; }
+  .logo-banner img, .logo-banner .logo-animated { height: 300px !important; }
+}
+
+/* ─── Mobile large / iPhone Plus / iPad mini portrait (768px) ─── */
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.6rem; }
+  .container { padding: 0 16px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .hero { min-height: 80vh; padding-top: 80px; }
-  .hero-buttons { flex-direction: column; }
+  .hero h1, .hero [style*="font-size:3.2rem"] { font-size: 2rem !important; }
+  .hero p { font-size: 1rem !important; }
+  .hero-buttons { flex-direction: column; align-items: stretch; }
+  .hero-buttons .btn { text-align: center; }
   .section { padding: 50px 0; }
+  /* Navigation mobile */
   .navbar-nav { display: none; }
+  .navbar-cta { display: none; }
   .hamburger { display: flex; }
   .navbar-nav.open {
     display: flex; flex-direction: column;
     position: absolute; top: 70px; left: 0; right: 0;
     background: var(--noir); padding: 20px 24px; gap: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  /* Logo banner */
+  .logo-banner { height: 100px !important; }
+  .logo-banner img, .logo-banner .logo-animated { height: 250px !important; }
+  /* Formules table scroll horizontal */
+  .formules-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .formules-table { min-width: 600px; }
+  /* Chiffres clés */
+  .grid-4 > div [style*="font-size:2.8rem"] { font-size: 2.2rem !important; }
+  /* Section philosophie */
+  [style*="max-width:900px"] h2, [style*="font-size:2rem"][style*="font-weight:400"] { font-size: 1.4rem !important; }
+  /* CTA section */
+  [style*="padding:100px 0"] { padding: 60px 0 !important; }
+  [style*="font-size:2.2rem"] { font-size: 1.6rem !important; }
+}
+
+/* ─── Mobile standard / iPhone 12-15 (430px) ─── */
+@media (max-width: 480px) {
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.1rem; }
+  .container { padding: 0 14px; }
+  .section { padding: 40px 0; }
+  .btn { padding: 12px 24px; font-size: 0.9rem; }
+  .btn-lg { padding: 14px 28px; font-size: 1rem; }
+  .hero { min-height: 75vh; padding-top: 70px; }
+  .hero h1, .hero [style*="font-size:3.2rem"] { font-size: 1.6rem !important; line-height: 1.25 !important; }
+  .hero p { font-size: 0.95rem !important; }
+  .hero-content { padding: 0 4px; }
+  /* Logo banner encore plus compact */
+  .logo-banner { height: 80px !important; margin-top: 60px !important; }
+  .logo-banner img, .logo-banner .logo-animated { height: 200px !important; }
+  /* Navbar compact */
+  .navbar .container { height: 60px; }
+  .navbar-logo span { font-size: 1.1rem !important; letter-spacing: 2px !important; }
+  /* Cards */
+  .card { padding: 20px; }
+  /* Footer */
+  .footer { padding: 40px 0 20px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { font-size: 0.75rem; }
+  /* Galerie */
+  .galerie-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  /* Chiffres clés */
+  .grid-4 > div [style*="font-size:2.8rem"] { font-size: 1.8rem !important; }
+  /* Nos univers — 2 colonnes au lieu de 4 */
+  [style*="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"] { grid-template-columns: 1fr 1fr !important; gap: 16px 24px !important; }
+  /* Nos expertises — 1 colonne */
+  [style*="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"] { grid-template-columns: 1fr !important; }
+  /* Philosophie */
+  [style*="max-width:900px"] h2 { font-size: 1.2rem !important; }
+  /* Pourquoi nous choisir */
+  [style*="gap:60px"] { gap: 30px !important; }
+  [style*="font-size:1.8rem"] { font-size: 1.3rem !important; }
+  /* CTA final */
+  [style*="padding:100px 0"] { padding: 48px 0 !important; }
+  [style*="font-size:2.2rem"] { font-size: 1.35rem !important; }
+  /* Contact form */
+  .form-control { padding: 10px 14px; font-size: 0.95rem; }
+}
+
+/* ─── Petit mobile / iPhone SE (375px et moins) ─── */
+@media (max-width: 375px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  .container { padding: 0 12px; }
+  .hero h1, .hero [style*="font-size:3.2rem"] { font-size: 1.4rem !important; }
+  .hero p { font-size: 0.88rem !important; }
+  .btn-lg { padding: 12px 20px; font-size: 0.9rem; }
+  .logo-banner { height: 65px !important; margin-top: 55px !important; }
+  .logo-banner img, .logo-banner .logo-animated { height: 160px !important; }
+  .navbar-logo span { font-size: 1rem !important; }
+  .galerie-grid { grid-template-columns: 1fr; }
+  [style*="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"] { grid-template-columns: 1fr !important; }
+}
+
+/* ─── Retina / High DPI — lisibilité améliorée ─── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+}
+
+/* ─── Orientation paysage mobile — éviter le scroll horizontal ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: auto; padding: 80px 0 40px; }
+  .logo-banner { height: 60px !important; }
+  .logo-banner img, .logo-banner .logo-animated { height: 150px !important; }
+  .section { padding: 30px 0; }
+}
+
+/* ─── Safe area (iPhone avec encoche / Dynamic Island) ─── */
+@supports (padding: env(safe-area-inset-top)) {
+  .navbar { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .footer { padding-bottom: calc(30px + env(safe-area-inset-bottom)); }
+}
+
+/* ─── Touch device optimizations ─── */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover { transform: none; }
+  .galerie-item:hover img { transform: none; }
+  .btn:hover { transform: none; }
+  .btn { min-height: 44px; } /* Apple recommandation : cible tactile 44px */
+  .navbar-nav a { padding: 12px 0; }
 }
