@@ -68,14 +68,19 @@ def galerie():
     return render_template('public/galerie.html')
 
 def _envoyer_message_contact(champs):
-    """Envoie le message du formulaire de contact par email SMTP (Gmail).
-    Lève une exception si la configuration SMTP est absente ou l'envoi échoue."""
-    import smtplib
+    """Envoie le message du formulaire de contact via l'API Gmail (HTTPS).
+    Utilise le compte de service Google avec delegation de domaine.
+    Lève une exception si la config est absente ou l'envoi échoue (→ filet de secours)."""
+    import base64
     from email.mime.text import MIMEText
     from email.utils import formataddr
-    user, pwd = Config.SMTP_USER, Config.SMTP_PASSWORD
-    if not user or not pwd:
-        raise RuntimeError('SMTP non configuré (SMTP_USER / SMTP_PASSWORD manquants)')
+    from google.oauth2 import service_account
+    from googleapiclient.discovery import build
+
+    key_file = Config.GOOGLE_SERVICE_ACCOUNT_FILE
+    if not key_file or not os.path.exists(key_file):
+        raise RuntimeError(f'Clé compte de service introuvable : {key_file}')
+
     corps = (
         "Nouveau message reçu via le formulaire de contact du site AVYRA-LIVE\n"
         "──────────────────────────────────────────────\n"
@@ -89,14 +94,19 @@ def _envoyer_message_contact(champs):
     )
     msg = MIMEText(corps, 'plain', 'utf-8')
     msg['Subject'] = f"[Site AVYRA] Contact — {champs['nom'] or champs['email']}"
-    msg['From'] = formataddr(('Site AVYRA-LIVE', user))
+    msg['From'] = formataddr(('Site AVYRA-LIVE', Config.GOOGLE_DELEGATED_USER))
     msg['To'] = Config.CONTACT_RECIPIENT
     if champs['email']:
         msg['Reply-To'] = champs['email']
-    with smtplib.SMTP(Config.SMTP_HOST, Config.SMTP_PORT, timeout=15) as s:
-        s.starttls()
-        s.login(user, pwd)
-        s.sendmail(user, [Config.CONTACT_RECIPIENT], msg.as_string())
+
+    creds = service_account.Credentials.from_service_account_file(
+        key_file,
+        scopes=['https://www.googleapis.com/auth/gmail.send'],
+        subject=Config.GOOGLE_DELEGATED_USER,
+    )
+    gmail = build('gmail', 'v1', credentials=creds, cache_discovery=False)
+    raw = base64.urlsafe_b64encode(msg.as_bytes()).decode()
+    gmail.users().messages().send(userId='me', body={'raw': raw}).execute()
 
 
 def _sauver_message_secours(champs):

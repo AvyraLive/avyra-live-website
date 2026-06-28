@@ -15,11 +15,11 @@ class Config:
     SOCIETE = 'SAS AVYRA-LIVE'
     PRESIDENT = 'Jean-Christophe DEJEAN'
 
-    # SMTP — envoi des messages du formulaire de contact
-    SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
-    SMTP_PORT = int(os.environ.get('SMTP_PORT', '587'))
-    SMTP_USER = os.environ.get('SMTP_USER', '')          # ex: contact@avyra-live.fr
-    SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')  # mot de passe d'application Gmail
+    # Formulaire de contact — envoi via l'API Gmail (HTTPS, compatible Render qui bloque le SMTP).
+    # Render bloque les ports SMTP (25/465/587) → on utilise le compte de service Google + delegation.
+    GOOGLE_SERVICE_ACCOUNT_FILE = os.environ.get(
+        'GOOGLE_SERVICE_ACCOUNT_FILE', '/etc/secrets/google-service-account.json')
+    GOOGLE_DELEGATED_USER = os.environ.get('GOOGLE_DELEGATED_USER', 'fabrice@avyra-live.fr')
     CONTACT_RECIPIENT = os.environ.get('CONTACT_RECIPIENT', 'contact@avyra-live.fr')
 
     # Paths to existing agents
