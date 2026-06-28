@@ -67,14 +67,71 @@ def techniques():
 def galerie():
     return render_template('public/galerie.html')
 
+def _envoyer_message_contact(champs):
+    """Envoie le message du formulaire de contact par email SMTP (Gmail).
+    Lève une exception si la configuration SMTP est absente ou l'envoi échoue."""
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.utils import formataddr
+    user, pwd = Config.SMTP_USER, Config.SMTP_PASSWORD
+    if not user or not pwd:
+        raise RuntimeError('SMTP non configuré (SMTP_USER / SMTP_PASSWORD manquants)')
+    corps = (
+        "Nouveau message reçu via le formulaire de contact du site AVYRA-LIVE\n"
+        "──────────────────────────────────────────────\n"
+        f"Nom / structure : {champs['nom']}\n"
+        f"Email           : {champs['email']}\n"
+        f"Téléphone       : {champs['telephone'] or '—'}\n"
+        f"Type d'événement: {champs['type_event'] or '—'}\n"
+        f"Date envisagée  : {champs['date_event'] or '—'}\n"
+        "──────────────────────────────────────────────\n\n"
+        f"{champs['message']}\n"
+    )
+    msg = MIMEText(corps, 'plain', 'utf-8')
+    msg['Subject'] = f"[Site AVYRA] Contact — {champs['nom'] or champs['email']}"
+    msg['From'] = formataddr(('Site AVYRA-LIVE', user))
+    msg['To'] = Config.CONTACT_RECIPIENT
+    if champs['email']:
+        msg['Reply-To'] = champs['email']
+    with smtplib.SMTP(Config.SMTP_HOST, Config.SMTP_PORT, timeout=15) as s:
+        s.starttls()
+        s.login(user, pwd)
+        s.sendmail(user, [Config.CONTACT_RECIPIENT], msg.as_string())
+
+
+def _sauver_message_secours(champs):
+    """Filet de sécurité : si l'email échoue, on journalise le message pour ne rien perdre."""
+    try:
+        import json
+        path = os.path.join(Config.BASE_DIR, 'contact_messages_secours.log')
+        with open(path, 'a', encoding='utf-8') as f:
+            f.write(json.dumps({'ts': datetime.now().isoformat(), **champs}, ensure_ascii=False) + '\n')
+    except Exception:
+        pass
+
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        nom = request.form.get('nom', '')
-        email_addr = request.form.get('email', '')
-        telephone = request.form.get('telephone', '')
-        message = request.form.get('message', '')
-        # TODO: envoyer via google_workspace.envoyer_email() ou stocker en BDD
+        # Anti-spam : champ caché "website" rempli uniquement par les bots
+        if request.form.get('website'):
+            return redirect(url_for('contact'))
+        champs = {
+            'nom': request.form.get('nom', '').strip(),
+            'email': request.form.get('email', '').strip(),
+            'telephone': request.form.get('telephone', '').strip(),
+            'type_event': request.form.get('type_event', '').strip(),
+            'date_event': request.form.get('date_event', '').strip(),
+            'message': request.form.get('message', '').strip(),
+        }
+        if not (champs['nom'] and champs['email'] and champs['message']):
+            flash('Merci de renseigner au moins votre nom, votre email et votre message.', 'error')
+            return render_template('public/contact.html')
+        try:
+            _envoyer_message_contact(champs)
+        except Exception as e:
+            app.logger.error(f'Échec envoi message contact : {e}')
+            _sauver_message_secours(champs)  # rien n'est perdu
         flash('Votre message a bien été envoyé. Nous vous recontacterons rapidement.', 'success')
         return redirect(url_for('contact'))
     return render_template('public/contact.html')
