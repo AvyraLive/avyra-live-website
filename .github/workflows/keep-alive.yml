@@ -12,7 +12,17 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping avyra-live.fr
+      - name: Ping avyra-live.fr (tolérant au réveil d'instance)
         run: |
-          curl -sf --max-time 30 https://avyra-live.fr > /dev/null
-          echo "✅ Site pingé avec succès à $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          # Le réveil d'une instance Render Free prend ~50 s : on laisse jusqu'à 120 s
+          # par tentative, on suit les redirections (-L), et on réessaie 3 fois.
+          for i in 1 2 3; do
+            if curl -fsSL --connect-timeout 15 --max-time 120 https://avyra-live.fr -o /dev/null; then
+              echo "✅ Site pingé avec succès (tentative $i) à $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+              exit 0
+            fi
+            echo "⏳ Tentative $i échouée (réveil en cours ?), nouvel essai dans 20 s..."
+            sleep 20
+          done
+          echo "❌ Échec après 3 tentatives à $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          exit 1
